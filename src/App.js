@@ -1,8 +1,20 @@
 import React from "react";
+import {
+    createBrowserRouter,
+    RouterProvider,
+  } from "react-router-dom";
+import Search from "./pages/Search/Search";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Search />,
+    },
+]);
 
 function App(){
     return(
-        <h1>Hello World!</h1>
+        <RouterProvider router={router} />
     );
 }
 
