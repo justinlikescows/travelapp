@@ -1,5 +1,7 @@
 import React from "react";
 import Listings from "./pages/Listings/Listings";
+import Checkout from "./pages/Check Out/checkout"
+
 import {
     createBrowserRouter,
     RouterProvider,
@@ -14,6 +16,10 @@ const router = createBrowserRouter([
     {
         path: "/listings",
         element: <Listings />,
+    },
+    {
+        path: "/checkout",
+        element: <Checkout />,
     },
 ]);
 
