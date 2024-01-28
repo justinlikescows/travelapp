@@ -19,11 +19,13 @@ const router = createBrowserRouter([
         element: <Listings />,
     },
     {
-        path: "/checkout",
-        element: <Checkout />,
         path: "/itinerary",
         element: <ItineraryYay />,
     },
+    {
+        path: "/checkout",
+        element: <Checkout />,
+    }
 ]);
 
 function App(){

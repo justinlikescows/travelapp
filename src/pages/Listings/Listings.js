@@ -4,6 +4,7 @@ import styles from './Listings.module.css';
 
 import data from './data';
 import Card from "./Card";
+
     function createCard(property) {
         return (
           <Card
