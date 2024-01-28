@@ -50,11 +50,11 @@ const co = new CohereClient({
 
 function ItineraryComponent(props) {
   const [schedule, setSchedule] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace 'Your Information Here' with the actual information you want to use
         const response = await co.generate({
           model: 'command-xlarge-nightly',
           prompt: `can you give me a detailed 3 day itinerary for traveling to ${props.location}, including attractions as well as food? additionally, can you format it so that its item by item? so for example,after saying day 1, it would say restaurant name and then descriptions after.`,
@@ -68,6 +68,8 @@ function ItineraryComponent(props) {
         setSchedule(`Option: ${response.generations[0].text}`);
       } catch (error) {
         console.error('Error:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -79,32 +81,18 @@ function ItineraryComponent(props) {
 
   return (
     <div className="everything">
-      <div className="title">Itinerary</div>
-        {lines.slice(1).map((line, index) => (
-          <div key={index} className={line.startsWith('Day') ? 'day-line' : 'normal-line'}>
+    <div className="title">Itinerary</div>
+    {loading ? (
+      <div className="loading"></div>
+    ) : (
+      lines.slice(1).map((line, index) => (
+        <div key={index} className={line.startsWith('Day') ? 'day-line' : 'normal-line'}>
           {line}
         </div>
-        ))}
-    </div>
+      ))
+    )}
+  </div>
   );
-
-    // const days = schedule.split(/(Day \d+:)/i).filter(day => day.trim() !== '');
-    
-    // return (
-    // <div className="itinerary-container">
-    //     <h3>Itinerary:</h3>
-    //     {days.map((day, index) => (
-    //     <div key={index} className="day-container">
-    //         <h4>{day}</h4>
-    //         <ul>
-    //         {day.split('\n').map((line, lineIndex) => (
-    //             <li key={lineIndex}>{line.trim()}</li>
-    //         ))}
-    //         </ul>
-    //     </div>
-    //     ))}
-    // </div>
-    // );
 
 }
 
