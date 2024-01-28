@@ -1,6 +1,7 @@
 import React from "react";
 import Listings from "./pages/Listings/Listings";
 import Checkout from "./pages/Check Out/checkout"
+import Confirmation from "./pages/Confirmation/Confirmation"
 
 import {
     createBrowserRouter,
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/flights",
         element: <Flights />,
+    },
+    {
+        path: "/confirmation",
+        element: <Confirmation />,
     }
 ]);
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import styles from './checkout.module.css';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Checkout(){
   const location = useLocation();
@@ -106,7 +107,9 @@ function Checkout(){
 
                         <hr class="my-4"/>
 
-                        <button class="w-100 btn btn-danger btn-lg" type="submit">Pay</button>
+                        <Link to="/confirmation">
+                            <button class="w-100 btn btn-danger btn-lg" type="submit">Pay</button>
+                        </Link>
                 </div>
 
               </div>

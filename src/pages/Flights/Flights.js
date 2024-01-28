@@ -21,7 +21,7 @@ function Flights() {
             <div>
                 <Header />
                 <div>
-                    <h1 className={styles.flightsTitle}>Flights</h1>
+                    <h1 className={styles.listingsTitle}>Flights</h1>
                     <div className={styles.container}>
                         
                         {/* Iterate over 'data' to render each item */}
