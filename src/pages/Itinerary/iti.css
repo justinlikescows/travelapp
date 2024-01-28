@@ -5,29 +5,28 @@ body {
   height: 100%;
 }
 
-/* .everything {
-  background-image: linear-gradient(
-    180deg,
-    rgb(236, 199, 199),
-    rgb(172, 172, 172)
-  );
-} */
+.everything {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .title {
   text-align: center;
   padding-top: 20px;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .day-line {
   color: #990000;
   font-weight: bold;
   font-size: 25px;
-  margin-left: 500px;
-  margin-right: 500px;
   margin-top: 20px;
   margin-bottom: 10px;
+  width: 400px;
 }
 
 .normal-line {
@@ -35,8 +34,13 @@ body {
   background-color: #f0f0f0;
   list-style-type: disc;
   padding: 5px;
-  margin-left: 500px;
-  margin-right: 500px;
   padding: 10px;
   box-shadow: 5px 5px 5px rgb(177, 177, 177);
+  width: 400px;
+}
+
+.days {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 }

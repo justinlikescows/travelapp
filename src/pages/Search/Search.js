@@ -8,9 +8,23 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import Header from '../../components/Header/Header';
+import { useNavigate } from 'react-router-dom';
+import { GoogleMap, useJsApiLoader, StreetViewPanorama } from '@react-google-maps/api';
 
 
 export default function Search() {
+    const navigate = useNavigate();
+
+    const [map, setMap] = React.useState(null);
+    const [mapLocation, setMapLocation] = React.useState({
+        lat: 27.173891,
+        lng: 78.042068
+    })
+    const [mapDirection, setMapDirection] = React.useState({
+        heading: 5,
+        pitch: 10,
+    })
+
     const {
         ready,
         value,
@@ -80,6 +94,41 @@ export default function Search() {
         }
     }, []);
 
+    function searchClicked() {
+        navigate("/itinerary", 
+            { state: { location: value} });
+    }
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY
+    })
+
+    const onLoad = React.useCallback(function callback(map) {
+        // This is just an example of getting and using the map instance!!! don't just blindly copy!
+        const bounds = new window.google.maps.LatLngBounds(mapLocation);
+        map.fitBounds(bounds);
+    
+        setMap(map)
+      }, [])
+    
+      const onUnmount = React.useCallback(function callback(map) {
+        setMap(null)
+      }, [])
+
+    function randomizeLocation() {
+        //48.8589391,2.2933884,3a
+        setMapLocation({
+            lat: 48.8589391,
+            lng: 2.2933884,
+        });
+
+        setMapDirection({
+            heading: -30,
+            pitch: 30,
+        });
+    }
+
 
     return (
         <body>
@@ -99,9 +148,32 @@ export default function Search() {
                                     {renderSuggestions()}
                                 </div>}
                             </div>
-                            <Button className={styles.searchButton} ><FaSearch color='white' /></Button>
+                            <Button className={styles.searchButton} onClick={searchClicked} ><FaSearch color='white' /></Button>
                         </div>
                     </div>
+                    <h1 className={styles.searchTitle}>Need some inspo?</h1>
+                    <Button onClick={randomizeLocation} className={styles.randomizeButton} >Take me somewhere new</Button>
+                    {
+                        isLoaded ? (
+                            <GoogleMap
+                              mapContainerStyle={{ height: '400px', width: '900px', borderRadius: 20 }}
+                              center={mapLocation}
+                              zoom={10}
+                              onLoad={onLoad}
+                              onUnmount={onUnmount}
+                            >
+                                <StreetViewPanorama
+                                    id="street-view"
+                                    mapContainerStyle={{ height: '400px', width: '900px' }}
+                                    position={mapLocation}
+                                    pov={mapDirection}
+                                    visible={true}
+                                />
+                              { /* Child components, such as markers, info windows, etc. */ }
+                              <></>
+                            </GoogleMap>
+                        ) : <></>
+                    }
                 </div>
             </div>
         </body>

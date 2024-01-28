@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     padding: 50px;
 }
 
@@ -29,6 +29,7 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    margin-bottom: 75px;
 }
 
 .searchBoxContainer {
@@ -109,4 +110,14 @@ body {
 
 .suggestionText {
     color: black;
+}
+
+.randomizeButton {
+    background-color: #990000 !important;
+    border: none !important;
+    margin-bottom: 10px;
+}
+
+.randomizeButton:hover {
+    background-color: #870000 !important;
 }
