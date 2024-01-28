@@ -9,7 +9,7 @@ const options = {
       // query: ///replace with passing///
     },
     headers: {
-      'X-RapidAPI-Key': '15beabd670mshb97acf07efb311dp1817c8jsnbce2b9c7b9a5', ///hide away in .env
+      'X-RapidAPI-Key': REACT_APP_X-RAPIDAPI-KEY, ///hide away in .env
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   };
