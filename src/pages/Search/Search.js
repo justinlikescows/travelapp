@@ -10,15 +10,25 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import Header from '../../components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, StreetViewPanorama } from '@react-google-maps/api';
+import locations from './locations';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import CalendarInput from '../../components/CalendarInput/CalendarInput';
+import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
+
+
+const GOOGLE_LIBRARIES = ["places"];
 
 
 export default function Search() {
     const navigate = useNavigate();
 
+    const [departureDate, setDepartureDate] = React.useState(new Date());
+    const [arrivalDate, setArrivalDate] = React.useState(new Date());
     const [map, setMap] = React.useState(null);
     const [mapLocation, setMapLocation] = React.useState({
-        lat: 27.173891,
-        lng: 78.042068
+        lat: 0,
+        lng: 0,
     })
     const [mapDirection, setMapDirection] = React.useState({
         heading: 5,
@@ -33,9 +43,6 @@ export default function Search() {
         clearSuggestions,
     } = usePlacesAutocomplete({
             callbackName: "initMap",
-            requestOptions: {
-                type: ["airport"]
-            },
             debounce: 300,
     });
 
@@ -101,11 +108,13 @@ export default function Search() {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
+        libraries: GOOGLE_LIBRARIES,
     })
 
     const onLoad = React.useCallback(function callback(map) {
         // This is just an example of getting and using the map instance!!! don't just blindly copy!
+        randomizeLocation();
         const bounds = new window.google.maps.LatLngBounds(mapLocation);
         map.fitBounds(bounds);
     
@@ -118,23 +127,25 @@ export default function Search() {
 
     function randomizeLocation() {
         //48.8589391,2.2933884,3a
-        setMapLocation({
-            lat: 48.8589391,
-            lng: 2.2933884,
-        });
+        var location = locations.wonders[Math.floor(Math.random()*locations.wonders.length)];
 
+        while (location.lat === mapLocation.lat && location.lng === mapLocation.lng) {
+            location = locations.wonders[Math.floor(Math.random()*locations.wonders.length)];
+        }
+        //console.log(location);
         setMapDirection({
-            heading: -30,
-            pitch: 30,
+            heading: location.heading,
+            pitch: location.pitch,
+        });
+        setMapLocation({
+            lat: location.lat,
+            lng: location.lng,
         });
     }
 
 
     return (
         <body>
-            <script defer
-                src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_KEY}&loading=async&libraries=places&callback=initMap`}>
-            </script>
             <div>
                 <Header />
                 <div className={styles.pageContainer} ref={ref}>
@@ -148,6 +159,8 @@ export default function Search() {
                                     {renderSuggestions()}
                                 </div>}
                             </div>
+                            <CalendarInput onDatePicked={setDepartureDate} icon={<FaPlaneDeparture style={{ marginRight: "10px" }} />} placeholder="Departure Date" />
+                            <CalendarInput onDatePicked={setArrivalDate} icon={<FaPlaneArrival style={{ marginRight: "10px" }} />} placeholder="Arrival Date" />
                             <Button className={styles.searchButton} onClick={searchClicked} ><FaSearch color='white' /></Button>
                         </div>
                     </div>
