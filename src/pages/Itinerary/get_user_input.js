@@ -81,7 +81,7 @@ function DistanceInput({ onDistanceSubmit }) {
   );
 }
 
-function App() {
+function UserInput() {
   const handleLocationSubmit = (location) => {
     console.log('Location:', location);
     // Handle the location data as needed
@@ -107,4 +107,4 @@ function App() {
   );
 }
 
-export default App;
+export default UserInput;
