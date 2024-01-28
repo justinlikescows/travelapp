@@ -9,6 +9,11 @@ import DistanceInput from './DistanceInput';
 import ItineraryComponent from './Itinerary_recommendations';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import './main.css';
+import { Link } from 'react-router-dom';
+
 
 
 function ItineraryYay() {
@@ -92,7 +97,16 @@ function ItineraryYay() {
       {/* <ItineraryComponent info:{} /> */}
       {/* {schedule} */}
       <Header />
-      <ItineraryComponent location={routeParams.state.location}/>
+      <div className="container">
+      <Link to="/" className="arrow left">
+        <FaArrowLeft />
+      </Link>
+      <ItineraryComponent location={routeParams.state.location} />
+      <Link to="/flights" className="arrow right">
+        <FaArrowRight />
+      </Link>
+      </div>
+
     </div>
   );
 }
