@@ -99,11 +99,11 @@ function ItineraryYay() {
       <Header />
       <div className="container">
       <Link to="/" className="arrow left">
-        <FaArrowLeft />
+        <FaArrowLeft color='#990000' />
       </Link>
       <ItineraryComponent location={routeParams.state.location} />
       <Link to="/flights" className="arrow right">
-        <FaArrowRight />
+        <FaArrowRight color='#990000' />
       </Link>
       </div>
 

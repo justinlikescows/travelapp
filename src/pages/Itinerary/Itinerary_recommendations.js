@@ -42,6 +42,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { CohereClient } from 'cohere-ai';
+import { InfinitySpin } from 'react-loader-spinner';
 import './iti.css';
 
 const co = new CohereClient({
@@ -81,9 +82,14 @@ function ItineraryComponent(props) {
 
   return (
     <div className="everything">
-    <div className="title">Itinerary</div>
+    <div className="title">Trip Itinerary</div>
     {loading ? (
-      <div className="loading"></div>
+      <InfinitySpin
+        visible={true}
+        width="200"
+        color="#990000"
+        ariaLabel="infinity-spin-loading"
+      />
     ) : (
       lines.slice(1).map((line, index) => (
         <div key={index} className={line.startsWith('Day') ? 'day-line' : 'normal-line'}>
