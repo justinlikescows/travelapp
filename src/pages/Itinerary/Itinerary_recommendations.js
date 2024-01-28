@@ -48,7 +48,7 @@ const co = new CohereClient({
   token: '3oLfmlBPNNCZBWB008008nFdhJ8Z6rDPCnwRDNyo',
 });
 
-function ItineraryComponent() {
+function ItineraryComponent(props) {
   const [schedule, setSchedule] = useState('');
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function ItineraryComponent() {
         // Replace 'Your Information Here' with the actual information you want to use
         const response = await co.generate({
           model: 'command-xlarge-nightly',
-          prompt: 'can you give me a detailed 3 day itinerary for traveling to New York, including attractions as well as food? additionally, can you format it so that its item by item? so for example,after saying day 1, it would say restaurant name and then descriptions after.',
+          prompt: `can you give me a detailed 3 day itinerary for traveling to ${props.location}, including attractions as well as food? additionally, can you format it so that its item by item? so for example,after saying day 1, it would say restaurant name and then descriptions after.`,
           max_tokens: 1432,
           temperature: 0.9,
           k: 0,

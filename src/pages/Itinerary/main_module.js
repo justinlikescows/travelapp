@@ -7,6 +7,8 @@ import ActivitySelection from './ActivitySelection';
 import DistanceInput from './DistanceInput';
 // import itinerary from './Itinerary_recommendations';
 import ItineraryComponent from './Itinerary_recommendations';
+import { useLocation } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 
 
 function ItineraryYay() {
@@ -18,6 +20,7 @@ function ItineraryYay() {
   const [schedule, setSchedule] = useState('');
   const [quitInput, setQuitInput] = useState('');
 
+  const routeParams = useLocation();
 //   const fetchData = async () => {
 //     if (!quit) {
 //       const list = [];
@@ -88,7 +91,8 @@ function ItineraryYay() {
       <DistanceInput onDistanceSubmit={handleDistanceSubmit} /> */}
       {/* <ItineraryComponent info:{} /> */}
       {/* {schedule} */}
-      <ItineraryComponent/>
+      <Header />
+      <ItineraryComponent location={routeParams.state.location}/>
     </div>
   );
 }
