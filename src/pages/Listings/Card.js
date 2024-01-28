@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 function Card(props) {
   const navigate = useNavigate(); // Initialize useNavigate hook
-
+  // const flightCost = props.flightCost;
   // Function to handle booking
   function bookClicked() {
     // Perform any booking-related actions here
     // For now, let's just navigate to the itinerary page
-    navigate("/checkout", { state: { airBNBCost: props.price } });
+    navigate("/checkout", { state: {flightCost: props.total, airBNBCost: props.price } });
   }
 
   return (
@@ -23,6 +23,7 @@ function Card(props) {
       <p>{props.type} with {props.beds} beds and {props.baths} bathrooms for {props.capacity} people.</p>
       <p>Price: ${props.price}</p>
       {/* Use Button's onClick to trigger bookClicked function */}
+
       <Button className={styles.mybutton} onClick={bookClicked}>Book now</Button>
     </div>
   );

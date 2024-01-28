@@ -1,6 +1,7 @@
 import React from "react";
 import data from "./data";
 import Card from "./Card";
+import styles from './Flights.module.css';
 
 
 function flightCard(property) {
@@ -18,9 +19,12 @@ function flightCard(property) {
 function Flights(){
     return (
         <div>
-            <h1>Flights</h1>
+        <h1 className={styles.listingsTitle}>Flights</h1>
+        <div className={styles.container}>
+            
             {/* Iterate over 'data' to render each item */}
             {data.data.flightOffers.map(flightCard)}
+            </div>
             </div>
     );
 }

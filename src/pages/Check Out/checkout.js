@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 function Checkout(){
   const location = useLocation();
   const airBNBCost = location.state.airBNBCost;
+  const flightCost = location.state.flightCost;
 
     return (
         <div>
@@ -18,7 +19,7 @@ function Checkout(){
                     <div class="col-md-5 col-lg-4 order-md-last">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-danger">Your cart</span>
-                            <span class="badge bg-danger rounded-pill">3</span>
+                            <span class="badge bg-danger rounded-pill">2</span>
                         </h4>
                         <ul class="list-group mb-3">
                             <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -26,7 +27,7 @@ function Checkout(){
                                     <h6 class="my-0">Flight</h6>
                                     <small class="text-body-secondary">Brief description</small>
                                 </div>
-                                <span class="text-body-secondary">$12</span>
+                                <span class="text-body-secondary">${flightCost}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between lh-sm">
                                 <div>
@@ -39,7 +40,7 @@ function Checkout(){
                         
                         <li class="list-group-item d-flex justify-content-between">
                           <span>Total (USD)</span>
-                          <strong>$20</strong>
+                          <strong>${flightCost + airBNBCost}</strong>
                         </li>
                       </ul>
               
