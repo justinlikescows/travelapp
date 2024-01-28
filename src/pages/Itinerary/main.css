@@ -1,0 +1,16 @@
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  size: 20px;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.left {
+  left: 200px; /* Adjust the left position as needed */
+}
+
+.right {
+  right: 200px; /* Adjust the right position as needed */
+}
