@@ -1,5 +1,5 @@
 import React from "react";
-import data from "./data";
+import data from "./data2";
 import Card from "./Card";
 import styles from './Flights.module.css';
 
