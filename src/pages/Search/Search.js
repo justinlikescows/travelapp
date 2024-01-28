@@ -7,6 +7,7 @@ import usePlacesAutocomplete, {
     getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import Header from '../../components/Header/Header';
 
 
 export default function Search() {
@@ -86,9 +87,7 @@ export default function Search() {
                 src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_KEY}&loading=async&libraries=places&callback=initMap`}>
             </script>
             <div>
-                <div className={styles.headerContainer}>
-                    <img className={styles.logo} src={require('../../assets/logo/itinero_logo.webp')} alt='Logo'/>
-                </div>
+                <Header />
                 <div className={styles.pageContainer} ref={ref}>
                     <div className={styles.searchContainer}>
                         <h1 className={styles.searchTitle}>Where are you headed?</h1>
@@ -106,6 +105,5 @@ export default function Search() {
                 </div>
             </div>
         </body>
-        
     );
 }
