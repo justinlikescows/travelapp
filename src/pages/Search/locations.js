@@ -25,6 +25,24 @@ const locations = {
             lng: 31.1367779,
             heading: 300,
             pitch: 10,
+        },
+        { // Stonehenge
+            lat: 51.1789,
+            lng: -1.8262,
+            heading: 100,
+            pitch: 0,
+        },
+        { // Grand Canyon
+            lat: 36.0931977,
+            lng: -112.1162429,
+            heading: 75,
+            pitch: 0
+        },
+        { // Citadel of Qaitbay
+            lat: 31.2135286,
+            lng: 29.8853471,
+            heading: 30,
+            pitch: 10
         }
     ]
 };

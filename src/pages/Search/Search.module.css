@@ -34,7 +34,7 @@ body {
 
 .searchBoxContainer {
     background-color: white;
-    width: 800px;
+    width: 900px;
     height: 60px;
     border-radius: 1000px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -69,6 +69,7 @@ body {
     font-size: 20px;
     border-radius: 100px;
     padding-left: 10px;
+    font-weight: 400;
 }
 
 .searchInput:focus-visible {
@@ -100,22 +101,27 @@ body {
 .suggestionButton {
     background-color: white !important;
     justify-content: center !important;
+    align-items: center !important;
     text-align: start !important;
     border: none !important;
+    padding: 12px !important;
 }
 
 .suggestionButton:hover {
-    background-color: rgb(200, 200, 200) !important;
+    background-color: rgb(240, 240, 240) !important;
 }
 
 .suggestionText {
     color: black;
+    margin-bottom: 0;
 }
 
 .randomizeButton {
     background-color: #990000 !important;
     border: none !important;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    padding: 25px !important;
+    border-radius: 100px !important;
 }
 
 .randomizeButton:hover {

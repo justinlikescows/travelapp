@@ -15,6 +15,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CalendarInput from '../../components/CalendarInput/CalendarInput';
 import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
+import { TbMapPinShare  } from "react-icons/tb";
 
 
 const GOOGLE_LIBRARIES = ["places"];
@@ -43,7 +44,7 @@ export default function Search() {
         clearSuggestions,
     } = usePlacesAutocomplete({
             callbackName: "initMap",
-            debounce: 300,
+            debounce: 100,
     });
 
     const ref = useOnclickOutside(() => {
@@ -103,7 +104,11 @@ export default function Search() {
 
     function searchClicked() {
         navigate("/itinerary", 
-            { state: { location: value} });
+            { state: {
+                location: value,
+                departureDate: departureDate,
+                arrivalDate: arrivalDate,
+            }});
     }
 
     const { isLoaded } = useJsApiLoader({
@@ -159,13 +164,13 @@ export default function Search() {
                                     {renderSuggestions()}
                                 </div>}
                             </div>
-                            <CalendarInput onDatePicked={setDepartureDate} icon={<FaPlaneDeparture style={{ marginRight: "10px" }} />} placeholder="Departure Date" />
-                            <CalendarInput onDatePicked={setArrivalDate} icon={<FaPlaneArrival style={{ marginRight: "10px" }} />} placeholder="Arrival Date" />
+                            <CalendarInput onDatePicked={setDepartureDate} icon={<FaPlaneDeparture size={24} style={{ marginRight: "10px" }} />} placeholder="Departure Date" />
+                            <CalendarInput onDatePicked={setArrivalDate} icon={<FaPlaneArrival size={24} style={{ marginRight: "10px" }} />} placeholder="Arrival Date" />
                             <Button className={styles.searchButton} onClick={searchClicked} ><FaSearch color='white' /></Button>
                         </div>
                     </div>
                     <h1 className={styles.searchTitle}>Need some inspo?</h1>
-                    <Button onClick={randomizeLocation} className={styles.randomizeButton} >Take me somewhere new</Button>
+                    <Button onClick={randomizeLocation} className={styles.randomizeButton} >Take me to another place <TbMapPinShare size={24} style={{ marginLeft: "5px" }} /></Button>
                     {
                         isLoaded ? (
                             <GoogleMap
