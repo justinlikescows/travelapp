@@ -7,6 +7,7 @@ import {
     RouterProvider,
   } from "react-router-dom";
 import Search from "./pages/Search/Search";
+import ItineraryYay from "./pages/Itinerary/main_module";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,8 @@ const router = createBrowserRouter([
     {
         path: "/checkout",
         element: <Checkout />,
+        path: "/itinerary",
+        element: <ItineraryYay />,
     },
 ]);
 
